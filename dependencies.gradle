@@ -1,0 +1,41 @@
+ext {
+
+    androidBuildToolsVer = '27.0.3'
+    androidMinSdkVer = '21'
+    androidTargetSdkVer = '27'
+    androidCompileSdkVer = '27'
+
+    //support
+    supportVer = '27.1.1'
+
+    //rx
+    rxJavaVer = '2.1.8'
+    rxAndroidVer = '2.0.1'
+    rxKotlinVer = '2.2.0'
+
+    //annotation
+    javaxAnnotationVer = '1.0'
+    javaxInjectVer = '1'
+
+    //tests
+    jUnitVer = '4.12'
+    mockitoVer = '2.18.3'
+    mokitoKotlinVer = '1.6.0'
+    assertJVer = '3.9.1'
+
+    domainDependencies = [
+            javaxAnnotation:    "javax.annotation:jsr250-api:$javaxAnnotationVer",
+            javaxInject:        "javax.inject:javax.inject:$javaxInjectVer",
+            rxKotlin:             "io.reactivex.rxjava2:rxkotlin:$rxKotlinVer"
+    ]
+
+    domainTestDependencies = [
+            junit:              "junit:junit:$jUnitVer",
+            mokito:             "com.nhaarman:mockito-kotlin:$mokitoKotlinVer",
+            assertj:            "org.assertj:assertj-core:$assertJVer"
+    ]
+
+
+
+
+}
