@@ -14,8 +14,13 @@ class GetProjectsUseCase
         postExecutionThread: PostExecutionThread,
         disposables: CompositeDisposable,
         private val projectGateway: ProjectGateway)
-    : ObservableUseCase<List<Project>, Nothing>(postExecutionThread, disposables) {
+    : ObservableUseCase<List<Project>, GetProjectsUseCase.Params>(postExecutionThread, disposables) {
 
-    override fun build(params: Nothing): Observable<List<Project>> = projectGateway.getProjects()
+    override fun build(params: Params): Observable<List<Project>> = projectGateway.getProjects()
 
+    class Params {
+        companion object {
+            fun get() = Params()
+        }
+    }
 }

@@ -1,12 +1,13 @@
 ext {
 
     androidBuildToolsVer = '27.0.3'
-    androidMinSdkVer = 21
-    androidTargetSdkVer = 27
-    androidCompileSdkVer = 27
+    androidMinSdk = 21
+    androidTargetSdk = 27
+    androidCompileSdk = 27
 
     //support
     supportVer = '27.1.1'
+    supportAnnotationsVer = '21.0.3'
 
     //rx
     rxJavaVer = '2.1.8'
@@ -16,12 +17,35 @@ ext {
     //annotation
     javaxAnnotationVer = '1.0'
     javaxInjectVer = '1'
+    glassfishAnnotationVer = '10.0-b28'
+
+    //di
+    daggerVer = '2.11'
+
+    //network
+    gsonVer = '2.8.1'
+    okHttpVer = '3.8.1'
+    retrofitVer = '2.3.0'
+    glideVer = '4.0.0'
+
+    //arch
+    archCompVer = '1.1.1'
+    roomVer = '1.0.0'
 
     //tests
     jUnitVer = '4.12'
     mockitoVer = '2.18.3'
     mokitoKotlinVer = '1.6.0'
     assertJVer = '3.9.1'
+    espressoVer = '3.0.0'
+    robolectricVer = '3.4.2'
+    mockitoVer = '1.9.5'
+    mockitoAndroidVer = '2.8.9'
+    androidSupportRunnerVer = '1.0.0'
+    androidSupportRulesVer = '1.0.0'
+    dexmakerMockitoVer = '2.2.0'
+    runnerVer = '0.5'
+
 
     domainDependencies = [
             javaxAnnotation:    "javax.annotation:jsr250-api:$javaxAnnotationVer",
@@ -35,7 +59,28 @@ ext {
             assertj:            "org.assertj:assertj-core:$assertJVer"
     ]
 
+    presentationDependencies = [
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVer}",
+            dagger:             "com.google.dagger:dagger:${daggerVer}",
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVer}",
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVer}",
+            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVer}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVer}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVer}",
+            androidAnnotations: "com.android.support:support-annotations:${supportAnnotationsVer}",
+            archRuntime:        "android.arch.lifecycle:runtime:${archCompVer}",
+            archExtensions:     "android.arch.lifecycle:extensions:${archCompVer}",
+            archCompiler:       "android.arch.lifecycle:compiler:${archCompVer}",
+    ]
 
+    presentationTestDependencies = [
+            junit:              "junit:junit:${jUnitVer}",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVer}",
+            assertj:            "org.assertj:assertj-core:${assertJVer}",
+            mockito:            "com.nhaarman:mockito-kotlin:${mokitoKotlinVer}",
+            robolectric:        "org.robolectric:robolectric:${robolectricVer}",
+            archTesting:        "android.arch.core:core-testing:${archCompVer}",
+    ]
 
 
 }
