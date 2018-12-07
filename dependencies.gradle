@@ -1,9 +1,9 @@
 ext {
 
     androidBuildToolsVer = '27.0.3'
-    androidMinSdkVer = '21'
-    androidTargetSdkVer = '27'
-    androidCompileSdkVer = '27'
+    androidMinSdkVer = 21
+    androidTargetSdkVer = 27
+    androidCompileSdkVer = 27
 
     //support
     supportVer = '27.1.1'
@@ -26,7 +26,7 @@ ext {
     domainDependencies = [
             javaxAnnotation:    "javax.annotation:jsr250-api:$javaxAnnotationVer",
             javaxInject:        "javax.inject:javax.inject:$javaxInjectVer",
-            rxKotlin:             "io.reactivex.rxjava2:rxkotlin:$rxKotlinVer"
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:$rxKotlinVer"
     ]
 
     domainTestDependencies = [

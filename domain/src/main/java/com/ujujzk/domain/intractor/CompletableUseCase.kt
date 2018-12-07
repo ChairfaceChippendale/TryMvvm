@@ -2,18 +2,16 @@ package com.ujujzk.domain.intractor
 
 import com.ujujzk.domain.executor.PostExecutionThread
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 
 abstract class CompletableUseCase<in Params>
 constructor(
         private val postExecutionThread: PostExecutionThread,
-        private val compositeDisposable: CompositeDisposable
+        private val disposables: CompositeDisposable
 ) {
 
     protected abstract fun build(params: Params): Completable
@@ -25,8 +23,8 @@ constructor(
         addDisposable(completable.subscribeWith(observer))
     }
 
-    fun dispose() = compositeDisposable.dispose()
+    fun dispose() = disposables.dispose()
 
-    private fun addDisposable(disposable: Disposable) = compositeDisposable.add(disposable)
+    private fun addDisposable(disposable: Disposable) = disposables.add(disposable)
 
 }
