@@ -3,11 +3,12 @@ ext {
     androidBuildToolsVer = '27.0.3'
     androidMinSdk = 21
     androidTargetSdk = 27
-    androidCompileSdk = 27
+    androidCompileSdk = 28
 
     //support
-    supportVer = '27.1.1'
+    supportVer = '28.0.0'
     supportAnnotationsVer = '21.0.3'
+    constraintVer = '1.1.3'
 
     //rx
     rxJavaVer = '2.1.8'
@@ -35,7 +36,7 @@ ext {
     //tests
     jUnitVer = '4.12'
     mockitoVer = '2.18.3'
-    mokitoKotlinVer = '1.6.0'
+    mockitoKotlinVer = '1.6.0'
     assertJVer = '3.9.1'
     espressoVer = '3.0.0'
     robolectricVer = '3.4.2'
@@ -55,7 +56,7 @@ ext {
 
     domainTestDependencies = [
             junit:              "junit:junit:$jUnitVer",
-            mokito:             "com.nhaarman:mockito-kotlin:$mokitoKotlinVer",
+            mokito:             "com.nhaarman:mockito-kotlin:$mockitoKotlinVer",
             assertj:            "org.assertj:assertj-core:$assertJVer"
     ]
 
@@ -77,9 +78,49 @@ ext {
             junit:              "junit:junit:${jUnitVer}",
             kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVer}",
             assertj:            "org.assertj:assertj-core:${assertJVer}",
-            mockito:            "com.nhaarman:mockito-kotlin:${mokitoKotlinVer}",
+            mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVer}",
             robolectric:        "org.robolectric:robolectric:${robolectricVer}",
             archTesting:        "android.arch.core:core-testing:${archCompVer}",
+    ]
+
+    mobileUiDependencies = [
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVer}",
+            dagger:             "com.google.dagger:dagger:${daggerVer}",
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVer}",
+            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVer}",
+            glide:              "com.github.bumptech.glide:glide:${glideVer}",
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVer}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVer}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVer}",
+            androidAnnotations: "com.android.support:support-annotations:${supportVer}",
+            androidSupportV4:   "com.android.support:support-v4:${supportVer}",
+            androidSupportV13:  "com.android.support:support-v13:${supportVer}",
+            appCompatV7:        "com.android.support:appcompat-v7:${supportVer}",
+            supportRecyclerView:"com.android.support:recyclerview-v7:${supportVer}",
+            supportDesign:      "com.android.support:design:${supportVer}",
+            constraint:         "com.android.support.constraint:constraint-layout:${constraintVer}",
+//            timber:             "com.jakewharton.timber:timber:${timberVer}",
+            daggerSupport:      "com.google.dagger:dagger-android-support:${daggerVer}",
+            daggerProcessor:    "com.google.dagger:dagger-android-processor:${daggerVer}",
+            glassfishAnnotation: "org.glassfish:javax.annotation:${glassfishAnnotationVer}",
+            roomRuntime:        "android.arch.persistence.room:runtime:${archCompVer}",
+            roomCompiler:       "android.arch.persistence.room:compiler:${archCompVer}",
+            roomRxJava:         "android.arch.persistence.room:rxjava2:${archCompVer}",
+    ]
+
+    mobileUiTestDependencies = [
+            junit:              "junit:junit:${jUnitVer}",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVer}",
+            assertj:            "org.assertj:assertj-core:${assertJVer}",
+            mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVer}",
+            supportRunner:      "com.android.support.test:runner:${androidSupportRunnerVer}",
+            supportRules:       "com.android.support.test:rules:${androidSupportRulesVer}",
+            mockitoAndroid:     "org.mockito:mockito-android:${mockitoAndroidVer}",
+            espressoCore:       "com.android.support.test.espresso:espresso-core:${espressoVer}",
+            espressoIntents:    "com.android.support.test.espresso:espresso-intents:${espressoVer}",
+            espressoContrib:    "com.android.support.test.espresso:espresso-contrib:${espressoVer}",
+            androidRunner:      "com.android.support.test:runner:${runnerVer}",
+            androidRules:       "com.android.support.test:rules:${runnerVer}"
     ]
 
 
