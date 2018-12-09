@@ -32,67 +32,80 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    testOptions {
+        unitTests.all {
+            jvmArgs '-noverify'
+        }
+    }
+
+}
+
+kapt {
+    correctErrorTypes = true
+    generateStubs = true
 }
 
 dependencies {
 
-    def mobileUiDependencies = rootProject.ext.mobileUiDependencies
-    def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
+    def presDep = rootProject.ext.presentationDependencies
+    def presTestDep = rootProject.ext.presentationTestDependencies
 
     //internal
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':presentation')
     implementation project(':domain')
 
     //support
-    implementation mobileUiDependencies.androidSupportV4
-    implementation mobileUiDependencies.androidSupportV13
-    implementation mobileUiDependencies.appCompatV7
-    implementation mobileUiDependencies.supportRecyclerView
-    implementation mobileUiDependencies.supportDesign
-    implementation mobileUiDependencies.constraint
+    implementation presDep.androidSupportV4
+    implementation presDep.androidSupportV13
+    implementation presDep.appCompatV7
+    implementation presDep.supportRecyclerView
+    implementation presDep.supportDesign
+    implementation presDep.constraint
 
     //kotlin
-    implementation mobileUiDependencies.kotlin
+    implementation presDep.kotlin
 
     //rx
-    implementation mobileUiDependencies.rxKotlin
-    implementation mobileUiDependencies.rxAndroid
+    implementation presDep.rxKotlin
+    implementation presDep.rxAndroid
 
     //dagger
-    implementation mobileUiDependencies.javaxAnnotation
-    implementation mobileUiDependencies.javaxInject
-    implementation mobileUiDependencies.dagger
-    implementation mobileUiDependencies.daggerSupport
-    kapt mobileUiDependencies.daggerCompiler
-    kapt mobileUiDependencies.daggerProcessor
-    compileOnly mobileUiDependencies.glassfishAnnotation
+    implementation presDep.javaxAnnotation
+    implementation presDep.javaxInject
+    implementation presDep.dagger
+    implementation presDep.daggerSupport
+    kapt presDep.daggerCompiler
+    kapt presDep.daggerProcessor
+    compileOnly presDep.glassfishAnnotation
 
     //arch
-    implementation presentationDependencies.archRuntime
-    implementation presentationDependencies.archExtensions
-    kapt presentationDependencies.archCompiler
-    implementation mobileUiDependencies.roomRxJava
+    implementation presDep.archRuntime
+    implementation presDep.archExtensions
+    kapt presDep.archCompiler
+    implementation presDep.roomRxJava
 
 
     //tests
-    testImplementation mobileUiTestDependencies.kotlinJUnit
-    androidTestImplementation mobileUiTestDependencies.junit
-    androidTestImplementation mobileUiTestDependencies.mockito
-    androidTestImplementation mobileUiTestDependencies.mockitoAndroid
-    androidTestImplementation(mobileUiTestDependencies.espressoCore) {
+    testImplementation presTestDep.kotlinJUnit
+    testImplementation presTestDep.junit
+    androidTestImplementation presTestDep.mockito
+    androidTestImplementation presTestDep.mockitoAndroid
+    androidTestImplementation presTestDep.assertj
+    testImplementation presTestDep.robolectric
+    testImplementation presTestDep.archTesting
+    androidTestImplementation(presTestDep.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.androidRunner) {
+    androidTestImplementation(presTestDep.androidRunner) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.androidRules) {
+    androidTestImplementation(presTestDep.androidRules) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.espressoIntents) {
+    androidTestImplementation(presTestDep.espressoIntents) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.espressoContrib) {
+    androidTestImplementation(presTestDep.espressoContrib) {
         exclude module: 'appcompat'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
@@ -102,8 +115,6 @@ dependencies {
         exclude module: 'design'
     }
 
-    kaptTest mobileUiDependencies.daggerCompiler
-    kaptAndroidTest mobileUiDependencies.daggerCompiler
+    kaptTest presDep.daggerCompiler
+    kaptAndroidTest presDep.daggerCompiler
 }
-
-apply plugin: 'kotlin-android-extensions'

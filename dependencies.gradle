@@ -64,29 +64,6 @@ ext {
             daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVer}",
             dagger:             "com.google.dagger:dagger:${daggerVer}",
             rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVer}",
-            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVer}",
-            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVer}",
-            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVer}",
-            javaxInject:        "javax.inject:javax.inject:${javaxInjectVer}",
-            androidAnnotations: "com.android.support:support-annotations:${supportAnnotationsVer}",
-            archRuntime:        "android.arch.lifecycle:runtime:${archCompVer}",
-            archExtensions:     "android.arch.lifecycle:extensions:${archCompVer}",
-            archCompiler:       "android.arch.lifecycle:compiler:${archCompVer}",
-    ]
-
-    presentationTestDependencies = [
-            junit:              "junit:junit:${jUnitVer}",
-            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVer}",
-            assertj:            "org.assertj:assertj-core:${assertJVer}",
-            mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVer}",
-            robolectric:        "org.robolectric:robolectric:${robolectricVer}",
-            archTesting:        "android.arch.core:core-testing:${archCompVer}",
-    ]
-
-    mobileUiDependencies = [
-            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVer}",
-            dagger:             "com.google.dagger:dagger:${daggerVer}",
-            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVer}",
             rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVer}",
             glide:              "com.github.bumptech.glide:glide:${glideVer}",
             kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVer}",
@@ -103,12 +80,15 @@ ext {
             daggerSupport:      "com.google.dagger:dagger-android-support:${daggerVer}",
             daggerProcessor:    "com.google.dagger:dagger-android-processor:${daggerVer}",
             glassfishAnnotation: "org.glassfish:javax.annotation:${glassfishAnnotationVer}",
+            archRuntime:        "android.arch.lifecycle:runtime:${archCompVer}",
+            archExtensions:     "android.arch.lifecycle:extensions:${archCompVer}",
+            archCompiler:       "android.arch.lifecycle:compiler:${archCompVer}",
             roomRuntime:        "android.arch.persistence.room:runtime:${archCompVer}",
             roomCompiler:       "android.arch.persistence.room:compiler:${archCompVer}",
             roomRxJava:         "android.arch.persistence.room:rxjava2:${archCompVer}",
     ]
 
-    mobileUiTestDependencies = [
+    presentationTestDependencies = [
             junit:              "junit:junit:${jUnitVer}",
             kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVer}",
             assertj:            "org.assertj:assertj-core:${assertJVer}",
@@ -120,7 +100,9 @@ ext {
             espressoIntents:    "com.android.support.test.espresso:espresso-intents:${espressoVer}",
             espressoContrib:    "com.android.support.test.espresso:espresso-contrib:${espressoVer}",
             androidRunner:      "com.android.support.test:runner:${runnerVer}",
-            androidRules:       "com.android.support.test:rules:${runnerVer}"
+            androidRules:       "com.android.support.test:rules:${runnerVer}",
+            robolectric:        "org.robolectric:robolectric:${robolectricVer}",
+            archTesting:        "android.arch.core:core-testing:${archCompVer}",
     ]
 
 

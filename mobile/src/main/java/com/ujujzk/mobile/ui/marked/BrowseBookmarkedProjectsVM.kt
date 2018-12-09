@@ -1,20 +1,20 @@
-package com.ujujzk.presentation
+package com.ujujzk.mobile.ui.marked
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.ujujzk.domain.intractor.browse.GetBookmarkedProjectsUseCase
 import com.ujujzk.domain.model.Project
-import com.ujujzk.presentation.mapper.ProjectFromDomainToPresentMapper
-import com.ujujzk.presentation.model.ProjectView
-import com.ujujzk.presentation.state.Resource
-import com.ujujzk.presentation.state.ResourceState
+import com.ujujzk.mobile.model.ProjectView
+import com.ujujzk.mobile.model.mapper.ProjectFromDomainToPresentMapper
+import com.ujujzk.mobile.model.mapper.wrapper.Resource
+import com.ujujzk.mobile.model.mapper.wrapper.ResourceState
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
 class BrowseBookmarkedProjectsVM
 @Inject constructor(
         val getBookmarkedProjectsUc: GetBookmarkedProjectsUseCase,
-        val mapper: ProjectFromDomainToPresentMapper): ViewModel(){
+        val mapper: ProjectFromDomainToPresentMapper) : ViewModel() {
 
     private val liveData: MutableLiveData<Resource<List<ProjectView>>> = MutableLiveData()
 
@@ -27,7 +27,7 @@ class BrowseBookmarkedProjectsVM
 
     fun fetchProjects() {
         liveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getBookmarkedProjectsUc.execute(object : DisposableObserver<List<Project>>(){
+        getBookmarkedProjectsUc.execute(object : DisposableObserver<List<Project>>() {
 
             override fun onNext(t: List<Project>) = liveData.postValue(Resource(ResourceState.SUCCESS, t.map { mapper.mapToView(it) }, null))
 

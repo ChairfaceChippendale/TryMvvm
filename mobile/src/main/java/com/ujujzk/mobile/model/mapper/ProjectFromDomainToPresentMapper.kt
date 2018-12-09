@@ -1,7 +1,7 @@
-package com.ujujzk.presentation.mapper
+package com.ujujzk.mobile.model.mapper
 
 import com.ujujzk.domain.model.Project
-import com.ujujzk.presentation.model.ProjectView
+import com.ujujzk.mobile.model.ProjectView
 
 class ProjectFromDomainToPresentMapper : Mapper<ProjectView, Project>{
 
