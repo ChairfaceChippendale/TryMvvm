@@ -1,4 +1,4 @@
-package com.ujujzk.mobile.model.mapper.wrapper
+package com.ujujzk.mobile.model.wrapper
 
 class Resource<out T>(
         val status: ResourceState,

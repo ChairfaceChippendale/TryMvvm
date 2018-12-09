@@ -8,8 +8,8 @@ import com.ujujzk.domain.intractor.browse.GetProjectsUseCase
 import com.ujujzk.domain.model.Project
 import com.ujujzk.mobile.model.ProjectView
 import com.ujujzk.mobile.model.mapper.ProjectFromDomainToPresentMapper
-import com.ujujzk.mobile.model.mapper.wrapper.Resource
-import com.ujujzk.mobile.model.mapper.wrapper.ResourceState
+import com.ujujzk.mobile.model.wrapper.Resource
+import com.ujujzk.mobile.model.wrapper.ResourceState
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
