@@ -2,74 +2,61 @@ package com.ujujzk.mobile.ui.projects
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.ujujzk.domain.intractor.bookmark.BookmarkProjectUseCase
-import com.ujujzk.domain.intractor.bookmark.UnbookmarkProjectUseCase
+import com.ujujzk.domain.intractor.browse.AddProjectUseCase
 import com.ujujzk.domain.intractor.browse.GetProjectsUseCase
 import com.ujujzk.domain.model.Project
 import com.ujujzk.mobile.model.ProjectView
 import com.ujujzk.mobile.model.mapper.ProjectFromDomainToPresentMapper
-import com.ujujzk.mobile.model.wrapper.Resource
-import com.ujujzk.mobile.model.wrapper.ResourceState
-import io.reactivex.observers.DisposableCompletableObserver
+import com.ujujzk.mobile.model.wrapper.DataWrapper
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
 class BrowseProjectsVM
-    @Inject
-    constructor(
-            val getProjectsUs: GetProjectsUseCase,
-            val bookmarkProjectUc: BookmarkProjectUseCase,
-            val unbookmarkProjectUc: UnbookmarkProjectUseCase,
-            val mapper: ProjectFromDomainToPresentMapper)
-            : ViewModel() {
+@Inject
+constructor(
+        val getProjectsUc: GetProjectsUseCase,
+        val addProjectUc: AddProjectUseCase,
+        val mapper: ProjectFromDomainToPresentMapper)
+    : ViewModel() {
 
-        val liveData: MutableLiveData<Resource<List<ProjectView>>> = MutableLiveData()
+    val liveData: MutableLiveData<DataWrapper<List<ProjectView>>> = MutableLiveData()
 
-        init {
-            fetchProjects()
-        }
-
-        override fun onCleared() {
-            getProjectsUs.dispose()
-            super.onCleared()
-        }
+    override fun onCleared() {
+        getProjectsUc.dispose()
+        super.onCleared()
+    }
 
 
-        fun getProjects() = liveData
+    fun getLifeData() = liveData
 
 
-        fun fetchProjects() {
-            liveData.postValue(Resource(ResourceState.LOADING, null, null))
-            getProjectsUs.execute(object : DisposableObserver<List<Project>>() {
+    fun fetchProjects() {
+        liveData.postValue(DataWrapper.loading())
+        getProjectsUc.execute(object : DisposableObserver<List<Project>>() {
 
-                override fun onNext(data: List<Project>) = liveData.postValue(Resource(ResourceState.SUCCESS, data.map { mapper.mapToView(it) }, null))
+            override fun onNext(data: List<Project>) = liveData.postValue(DataWrapper.success(data.map { mapper.mapToView(it) }))
 
-                override fun onComplete() = Unit
+            override fun onComplete() = Unit
 
-                override fun onError(e: Throwable) = liveData.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
+            override fun onError(e: Throwable) = liveData.postValue(DataWrapper.error(e.localizedMessage))
 
-            }, GetProjectsUseCase.Params.get())
-        }
+        }, GetProjectsUseCase.Params.get())
+    }
 
+    fun addProject(name: String, imageUrl: String) {
+        liveData.postValue(DataWrapper.loading())
+        addProjectUc.execute(object : DisposableObserver<Project>(){
 
-        fun bookmarkProject(projectId: String) {
-            bookmarkProjectUc.execute(object : DisposableCompletableObserver() {
+            override fun onNext(t: Project) {
+                liveData.value?.data
+            }
+            override fun onComplete() {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            override fun onError(e: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
 
-                override fun onComplete() = liveData.postValue(Resource(ResourceState.SUCCESS, liveData.value?.data, null))
-
-                override fun onError(e: Throwable) = liveData.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
-
-            }, BookmarkProjectUseCase.Params.forProject(projectId))
-        }
-
-
-        fun unBookmarkProject(projectId: String) {
-            unbookmarkProjectUc.execute(object : DisposableCompletableObserver() {
-
-                override fun onComplete() = liveData.postValue(Resource(ResourceState.SUCCESS, liveData.value?.data, null))
-
-                override fun onError(e: Throwable) = liveData.postValue(Resource(ResourceState.ERROR, null, e.localizedMessage))
-
-            }, UnbookmarkProjectUseCase.Params.forProject(projectId))
-        }
+    }
 }
