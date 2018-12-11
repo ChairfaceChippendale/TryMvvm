@@ -9,10 +9,11 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
 class GetCatsUseCase
-@Inject constructor(
+ constructor(
         postExecutionThread: PostExecutionThread,
         disposables: CompositeDisposable,
         private val catGateway: CatGateway)

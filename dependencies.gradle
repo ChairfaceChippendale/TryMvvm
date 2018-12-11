@@ -106,4 +106,20 @@ ext {
     ]
 
 
+    dataDependencies = [
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVer}",
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVer}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVer}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVer}",
+    ]
+
+    dataTestDependencies = [
+            junit:              "junit:junit:${jUnitVer}",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVer}",
+            assertj:            "org.assertj:assertj-core:${assertJVer}",
+            mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVer}",
+            robolectric:        "org.robolectric:robolectric:${robolectricVer}"
+    ]
+
+
 }
