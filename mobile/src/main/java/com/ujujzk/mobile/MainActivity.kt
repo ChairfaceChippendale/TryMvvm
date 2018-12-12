@@ -1,12 +1,25 @@
 package com.ujujzk.mobile
 
-import android.support.v7.app.AppCompatActivity
+import android.databinding.DataBindingUtil
 import android.os.Bundle
+import com.ujujzk.mobile.databinding.ActivityMainBinding
+import com.ujujzk.mobile.model.Progress
+import com.ujujzk.mobile.ui.BaseActivity
+import com.ujujzk.mobile.ui.cats.CatsFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        replaceFragment(CatsFragment.inst(), R.id.container)
+
+    }
+
+    override fun progress(progress: Progress) {
+        binding.progress.progress = progress
     }
 }

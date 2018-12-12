@@ -14,5 +14,5 @@ interface ApplicationComponent {
 
     fun inject(fragment: CatsFragment)
 
-    fun postExecutionThread(postExecutionThread: PostExecutionThread)
+//    fun postExecutionThread(postExecutionThread: PostExecutionThread)
 }

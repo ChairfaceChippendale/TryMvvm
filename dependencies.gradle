@@ -28,6 +28,7 @@ ext {
     okHttpVer = '3.8.1'
     retrofitVer = '2.3.0'
     glideVer = '4.0.0'
+    picassoVer = '2.5.2'
 
     //arch
     archCompVer = '1.1.1'
@@ -65,7 +66,7 @@ ext {
             dagger:             "com.google.dagger:dagger:${daggerVer}",
             rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVer}",
             rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVer}",
-            glide:              "com.github.bumptech.glide:glide:${glideVer}",
+            picasso:            "com.squareup.picasso:picasso:${picassoVer}",
             kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVer}",
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVer}",
             javaxInject:        "javax.inject:javax.inject:${javaxInjectVer}",

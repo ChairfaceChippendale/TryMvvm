@@ -89,6 +89,9 @@ dependencies {
     kapt presDep.archCompiler
     implementation presDep.roomRxJava
 
+    //utils
+    implementation presDep.picasso
+
 
     //tests
     testImplementation presTestDep.kotlinJUnit
