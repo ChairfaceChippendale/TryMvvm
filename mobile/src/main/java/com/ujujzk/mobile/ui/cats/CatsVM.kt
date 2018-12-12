@@ -2,20 +2,19 @@ package com.ujujzk.mobile.ui.cats
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.ujujzk.data.cats.CatsGatewayImpl
 import com.ujujzk.domain.intractor.browse.GetCatsUseCase
 import com.ujujzk.domain.model.Cat
-import com.ujujzk.mobile.UiThread
 import com.ujujzk.mobile.model.CatView
 import com.ujujzk.mobile.model.mapper.CatFromDomainToPresentMapper
 import com.ujujzk.mobile.model.wrapper.DataWrapper
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
+import javax.inject.Inject
 
-class CatsVM : ViewModel() {
-
-    private val catMapper: CatFromDomainToPresentMapper = CatFromDomainToPresentMapper()
-    private val getCatsUc: GetCatsUseCase = GetCatsUseCase(UiThread(), CompositeDisposable(), CatsGatewayImpl())
+class CatsVM
+    @Inject constructor(
+            private val getCatsUc: GetCatsUseCase,
+            private val catMapper: CatFromDomainToPresentMapper)
+    : ViewModel() {
 
     var cats: MutableLiveData<DataWrapper<List<CatView>>> = MutableLiveData()
 

@@ -27,9 +27,9 @@ class CatsFragment: BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cats, container, false)
-//        appComponent.inject(this)
+        appComponent.inject(this)
 
-        viewModel = ViewModelProviders.of(this).get(CatsVM::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(CatsVM::class.java)
         viewModel.cats.observe(this, Observer<DataWrapper<List<CatView>>> {
             when(it?.status) {
                 DataState.SUCCESS -> {}

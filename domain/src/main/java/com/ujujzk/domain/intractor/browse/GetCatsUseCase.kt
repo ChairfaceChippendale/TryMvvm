@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 
 class GetCatsUseCase
- constructor(
+ @Inject constructor(
         postExecutionThread: PostExecutionThread,
         disposables: CompositeDisposable,
         private val catGateway: CatGateway)
