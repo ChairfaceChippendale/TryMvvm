@@ -28,7 +28,7 @@ ext {
     okHttpVer = '3.8.1'
     retrofitVer = '2.3.0'
     glideVer = '4.0.0'
-    picassoVer = '2.5.2'
+    picassoVer = '2.71828'
 
     //arch
     archCompVer = '1.1.1'
