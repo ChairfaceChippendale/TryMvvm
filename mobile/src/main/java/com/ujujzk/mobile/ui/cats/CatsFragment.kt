@@ -2,6 +2,9 @@ package com.ujujzk.mobile.ui.cats
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -63,8 +66,9 @@ class CatsFragment : BaseFragment() {
             }
         })
 
-        cat_list.layoutManager = LinearLayoutManager(context)
         cat_list.adapter = catListAdapter
         viewModel.getCats()
+
+
     }
 }

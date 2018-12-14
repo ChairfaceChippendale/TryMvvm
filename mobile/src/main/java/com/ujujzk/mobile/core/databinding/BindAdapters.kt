@@ -1,6 +1,7 @@
-package com.ujujzk.mobile.core.adapter
+package com.ujujzk.mobile.core.databinding
 
 import android.databinding.BindingAdapter
+import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
 import com.ujujzk.mobile.core.util.DrawableUtil
 
@@ -8,3 +9,6 @@ import com.ujujzk.mobile.core.util.DrawableUtil
 fun loadImage(imageView: ImageView, url: String?){
     DrawableUtil.loadImage(imageView, url)
 }
+
+@BindingAdapter("app:adapter", "app:data")
+fun setData(recyclerView: RecyclerView, )

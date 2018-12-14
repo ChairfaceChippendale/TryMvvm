@@ -16,12 +16,10 @@ class CatsGatewayImpl @Inject constructor() : CatGateway {
     }
 
     val cats = listOf<Cat>(
-            Cat("Mike", "https://c1.staticflickr.com/5/4636/25316407448_de5fbf183d_o.jpg", true),
-            Cat("Butch", "https://i.redd.it/tpsnoz5bzo501.jpg", true),
-            Cat("Dude", "https://i.redd.it/qn7f9oqu7o501.jpg", false),
-            Cat("Fur", "https://i.redd.it/j6myfqglup501.jpg", true),
-            Cat("Tom", "https://i.redd.it/0h2gm1ix6p501.jpg", true),
-            Cat("Aphonya", "https://i.redd.it/k98uzl68eh501.jpg", false)
+            Cat("Mike", "http://faydark-coon.com/images/photos/243/perfect-cat-cuba-2.jpg", true),
+            Cat("Butch", "https://pbs.twimg.com/profile_images/703554305782054912/osSSydtK_400x400.jpg", true),
+            Cat("Dude", "https://is1-ssl.mzstatic.com/image/thumb/Purple118/v4/bc/ba/16/bcba16f8-49ce-c6b9-6226-d7d85a8556ea/source/256x256bb.jpg", false),
+            Cat("Fur", "https://cdn140.picsart.com/257908300012202.jpg?c256x256", true)
     )
 
 }

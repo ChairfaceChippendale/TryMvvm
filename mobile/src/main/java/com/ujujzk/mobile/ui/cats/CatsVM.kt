@@ -1,5 +1,6 @@
 package com.ujujzk.mobile.ui.cats
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.ujujzk.domain.intractor.browse.GetCatsUseCase
@@ -17,6 +18,7 @@ class CatsVM
     : ViewModel() {
 
     var cats: MutableLiveData<DataWrapper<List<CatView>>> = MutableLiveData()
+
 
     fun getCats() {
         cats.postValue(DataWrapper.loading())

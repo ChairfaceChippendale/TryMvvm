@@ -1,7 +1,11 @@
 package com.ujujzk.mobile
 
+import android.app.IntentService
+import android.app.Service
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.IBinder
 import com.ujujzk.mobile.databinding.ActivityMainBinding
 import com.ujujzk.mobile.model.Progress
 import com.ujujzk.mobile.ui.BaseActivity
