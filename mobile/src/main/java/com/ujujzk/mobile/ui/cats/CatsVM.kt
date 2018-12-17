@@ -20,15 +20,15 @@ class CatsVM
         private val catMapper: CatFromDomainToPresentMapper)
     : ViewModel() {
 
-    val catListAdapter = ObservableField<CatListAdapter>()
+    val cats = MutableLiveData<List<CatView>>()
+
 
     val isLoading = ObservableBoolean()
 
 
-
     fun getCats() {
         Log.w("TAG", "get")
-        if (catListAdapter.get()?.data?.isEmpty() != false && isLoading.get() == false) {
+        if (cats.value == null && !isLoading.get()) {
             isLoading.set(true)
             Log.w("TAG", "load")
             getCatsUc.execute(
@@ -36,8 +36,7 @@ class CatsVM
 
                         override fun onSuccess(data: List<Cat>) {
                             isLoading.set(false)
-                            catListAdapter.set(
-                                    CatListAdapter().also { it.data = data.map { catMapper.mapToView(it) } })
+                            cats.value = data.map { catMapper.mapToView(it) }
                             Log.w("TAG", "loaded")
                         }
 
@@ -46,6 +45,8 @@ class CatsVM
                         }
 
                     }, GetCatsUseCase.Params.get())
+        } else {
+            cats.postValue(cats.value)
         }
 
     }

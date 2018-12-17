@@ -28,6 +28,8 @@ class CatsFragment : BaseFragment() {
     private lateinit var binding: FragmentCatsBinding
     private lateinit var viewModel: CatsVM
 
+    private val catsListAdapter: CatListAdapter = CatListAdapter()
+
     companion object {
         fun inst(): CatsFragment {
             return CatsFragment()
@@ -47,8 +49,13 @@ class CatsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.catList.adapter = catsListAdapter
         binding.viewModel = viewModel
         binding.executePendingBindings()
+
+        viewModel.cats.observe(this, Observer { catsListAdapter.data = it ?: emptyList<CatView>() })
+
         viewModel.getCats()
     }
 }
