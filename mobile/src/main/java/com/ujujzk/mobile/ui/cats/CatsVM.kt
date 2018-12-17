@@ -27,8 +27,10 @@ class CatsVM
 
 
     fun getCats() {
-        if (catListAdapter.get()?.data?.isEmpty() != false) {
+        Log.w("TAG", "get")
+        if (catListAdapter.get()?.data?.isEmpty() != false && isLoading.get() == false) {
             isLoading.set(true)
+            Log.w("TAG", "load")
             getCatsUc.execute(
                     object : DisposableSingleObserver<List<Cat>>() {
 
@@ -36,6 +38,7 @@ class CatsVM
                             isLoading.set(false)
                             catListAdapter.set(
                                     CatListAdapter().also { it.data = data.map { catMapper.mapToView(it) } })
+                            Log.w("TAG", "loaded")
                         }
 
                         override fun onError(e: Throwable) {
