@@ -25,9 +25,6 @@ import javax.inject.Inject
 
 class CatsFragment : BaseFragment() {
 
-    @Inject
-    lateinit var catListAdapter: CatListAdapter
-
     private lateinit var binding: FragmentCatsBinding
     private lateinit var viewModel: CatsVM
 
@@ -45,30 +42,13 @@ class CatsFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cats, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        viewModel.cats.observe(this, Observer<DataWrapper<List<CatView>>> {
-            when (it?.status) {
-                DataState.SUCCESS -> {
-                    progress(Progress.hide())
-                    catListAdapter.cats = it.data ?: emptyList<CatView>()
-                }
-                DataState.ERROR -> {
-                    progress(Progress.hide())
-                }
-                DataState.LOADING -> progress(Progress.show("Loading..."))
-            }
-        })
-
-        cat_list.adapter = catListAdapter
+        binding.viewModel = viewModel
+        binding.executePendingBindings()
         viewModel.getCats()
-
-
     }
 }

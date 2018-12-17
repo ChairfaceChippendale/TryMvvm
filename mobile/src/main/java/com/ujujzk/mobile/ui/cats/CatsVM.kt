@@ -3,6 +3,9 @@ package com.ujujzk.mobile.ui.cats
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
+import android.util.Log
 import com.ujujzk.domain.intractor.browse.GetCatsUseCase
 import com.ujujzk.domain.model.Cat
 import com.ujujzk.mobile.model.CatView
@@ -12,25 +15,36 @@ import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
 class CatsVM
-    @Inject constructor(
-            private val getCatsUc: GetCatsUseCase,
-            private val catMapper: CatFromDomainToPresentMapper)
+@Inject constructor(
+        private val getCatsUc: GetCatsUseCase,
+        private val catMapper: CatFromDomainToPresentMapper)
     : ViewModel() {
 
-    var cats: MutableLiveData<DataWrapper<List<CatView>>> = MutableLiveData()
+    val catListAdapter = ObservableField<CatListAdapter>()
+
+    val isLoading = ObservableBoolean()
+
 
 
     fun getCats() {
-        cats.postValue(DataWrapper.loading())
-        getCatsUc.execute(
-                object : DisposableSingleObserver<List<Cat>>() {
-                    override fun onSuccess(data: List<Cat>) =
-                            cats.postValue(DataWrapper.success(data.map { catMapper.mapToView(it) }))
+        if (catListAdapter.get()?.data?.isEmpty() != false) {
+            isLoading.set(true)
+            getCatsUc.execute(
+                    object : DisposableSingleObserver<List<Cat>>() {
 
-                    override fun onError(e: Throwable) =
-                            cats.postValue(DataWrapper.error(e.localizedMessage))
+                        override fun onSuccess(data: List<Cat>) {
+                            isLoading.set(false)
+                            catListAdapter.set(
+                                    CatListAdapter().also { it.data = data.map { catMapper.mapToView(it) } })
+                        }
 
-                }, GetCatsUseCase.Params.get())
+                        override fun onError(e: Throwable) {
+                            isLoading.set(false)
+                        }
+
+                    }, GetCatsUseCase.Params.get())
+        }
+
     }
 
 

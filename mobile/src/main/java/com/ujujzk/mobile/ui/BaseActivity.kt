@@ -16,7 +16,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         val fragmentName = fragment.javaClass.simpleName
         if (supportFragmentManager.findFragmentByTag(fragmentName) == null) {
             supportFragmentManager.beginTransaction().apply {
-                replace(containerId, fragment)
+                replace(containerId, fragment, fragmentName)
                 commit()
             }
         }

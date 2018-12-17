@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ujujzk.mobile.ui.cats.CatsVM"/>
+    </data>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,7 +24,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            android:adapter="@{viewModel.catListAdapter}"
             tools:listitem="@layout/item_cat"/>
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/view_progress"
+            android:visibility="@{viewModel.isLoading() ? View.VISIBLE : View.GONE}"
+            />
 
     </android.support.constraint.ConstraintLayout>
 

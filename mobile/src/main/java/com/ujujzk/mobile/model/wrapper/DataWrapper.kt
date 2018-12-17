@@ -10,8 +10,6 @@ class DataWrapper<out T> private constructor(val status: DataState,
 
         fun <T> error(message: String = "Unknown error"): DataWrapper<T> = DataWrapper(DataState.ERROR, null, message)
 
-        fun <T> loading(message: String = "loading"): DataWrapper<T> = DataWrapper(DataState.LOADING, null, message)
-
     }
 
 }

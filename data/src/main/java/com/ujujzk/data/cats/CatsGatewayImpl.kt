@@ -3,12 +3,16 @@ package com.ujujzk.data.cats
 import com.ujujzk.domain.gateway.CatGateway
 import com.ujujzk.domain.model.Cat
 import io.reactivex.Single
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
 class CatsGatewayImpl @Inject constructor() : CatGateway {
     override fun getCats(): Single<List<Cat>> {
-        return Single.just<List<Cat>>(cats)
+
+        return Single.timer(5, TimeUnit.SECONDS).map { cats }
+
+//        return Single.just<List<Cat>>(cats)
     }
 
     override fun getCatByName(): Single<Cat> {

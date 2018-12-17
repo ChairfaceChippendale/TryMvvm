@@ -10,5 +10,3 @@ fun loadImage(imageView: ImageView, url: String?){
     DrawableUtil.loadImage(imageView, url)
 }
 
-@BindingAdapter("app:adapter", "app:data")
-fun setData(recyclerView: RecyclerView, )
