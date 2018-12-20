@@ -6,7 +6,7 @@
     <data>
         <variable
             name="cat"
-            type="com.ujujzk.mobile.model.CatView"/>
+            type="com.ujujzk.mobile.model.VCat"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

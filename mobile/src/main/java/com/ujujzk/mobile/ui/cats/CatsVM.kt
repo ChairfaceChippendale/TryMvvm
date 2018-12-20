@@ -1,16 +1,13 @@
 package com.ujujzk.mobile.ui.cats
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.util.Log
 import com.ujujzk.domain.intractor.browse.GetCatsUseCase
 import com.ujujzk.domain.model.Cat
-import com.ujujzk.mobile.model.CatView
+import com.ujujzk.mobile.model.VCat
 import com.ujujzk.mobile.model.mapper.CatFromDomainToPresentMapper
-import com.ujujzk.mobile.model.wrapper.DataWrapper
 import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
@@ -20,10 +17,9 @@ class CatsVM
         private val catMapper: CatFromDomainToPresentMapper)
     : ViewModel() {
 
+    val cats = ArrayList<VCat>()
     val catListAdapter = ObservableField<CatListAdapter>()
-
     val isLoading = ObservableBoolean()
-
 
 
     fun getCats() {
